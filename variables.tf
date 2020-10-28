@@ -5,11 +5,11 @@ variable "vpc_cidr_block" {
 
 variable "availability_zones" {
   type        = list(string)
-  description = "A list of exactly two AWS availabilty zones in which to deploy the infrastructure. If not provided Terraform will use any two zones in the current region."
-  default     = null
+  description = "A list of two AWS availabilty zones in which to deploy the infrastructure. If not provided Terraform will use any two zones in the current region."
+  default     = []
   validation {
-    condition     = var.availability_zones == null || length(var.availability_zones) == 2
-    error_message = "The 'availability_zones' variable value must be a list with exactly 2 elements."
+    condition     = length(var.availability_zones) == 0 || length(var.availability_zones) == 2
+    error_message = "The 'availability_zones' variable value must be a list with 0 or 2 elements."
   }
 }
 
@@ -33,10 +33,10 @@ variable "private_subnets_cidrs" {
 
 variable "rds_subnets_cidrs" {
   type        = list(string)
-  description = "A list of exactly two CIDRs for the RDS subent group. The CIDRs must be within the CIDR set for 'vpc_cidr_block'."
+  description = "A list of 0 or two CIDRs for the RDS subent group. The CIDRs must be within the CIDR set for 'vpc_cidr_block'."
   validation {
-    condition     = length(var.rds_subnets_cidrs) == 2
-    error_message = "The 'rds_subnets_cidrs' variable value must be a list with exactly 2 elements."
+    condition     = length(var.rds_subnets_cidrs) == 0 || length(var.rds_subnets_cidrs) == 2
+    error_message = "The 'rds_subnets_cidrs' variable value must be a list with 0 or 2 elements."
   }
 }
 

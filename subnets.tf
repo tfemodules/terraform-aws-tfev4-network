@@ -1,7 +1,7 @@
 data "aws_availability_zones" "azs" {}
 
 locals {
-  azs = var.availability_zones == null ? [element(data.aws_availability_zones.azs.names, 0), element(data.aws_availability_zones.azs.names, 1)] : var.availability_zones
+  azs = length(var.availability_zones) == 0 ? [element(data.aws_availability_zones.azs.names, 0), element(data.aws_availability_zones.azs.names, 1)] : var.availability_zones
 }
 
 resource "aws_vpc" "main" {
