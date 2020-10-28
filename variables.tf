@@ -34,7 +34,7 @@ variable "private_subnets_cidrs" {
 variable "rds_subnets_cidrs" {
   type        = list(string)
   description = "A list of 0 or two CIDRs for the RDS subnet group. The CIDRs must be within the CIDR set for 'vpc_cidr_block'."
-  default = []
+  default     = []
   validation {
     condition     = length(var.rds_subnets_cidrs) == 0 || length(var.rds_subnets_cidrs) == 2
     error_message = "The 'rds_subnets_cidrs' variable value must be a list with 0 or 2 elements."
