@@ -25,7 +25,7 @@ output "private_subnet_cidr_to_id" {
 
 output "rds_subnet_ids" {
   value       = values(aws_subnet.rds)[*].id
-  description = "Ids of the private subnets."
+  description = "Ids of the RDS subnets."
 }
 
 output "rds_subnet_cidr_to_id" {
