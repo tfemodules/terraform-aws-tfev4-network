@@ -48,3 +48,25 @@ The outputs declared by the module are in the table below
 | rds_subnet_ids | `list(string)` | Ids of the RDS subnets. |
 | rds_subnet_cidr_to_id | `map(string)` | A mapping of the RDS subnets CIDRs to their Ids. |
 | nat_gateway_public_ip | `string` | The public IP of the NAT gateway. |
+
+## Example Module Declaration
+
+An example of how the module can be used.
+
+```hcl
+module "tfe_network" {
+  source = "git::https://github.com/tfemodules/terraform-aws-tfev4-network.git"
+
+  vpc_cidr_block        = "172.31.255.0/24"
+  public_subnets_cidrs  = ["172.31.255.0/28", "172.31.255.16/28"]
+  private_subnets_cidrs = ["172.31.255.32/28", "172.31.255.48/28"]
+  rds_subnets_cidrs     = ["172.31.255.64/28", "172.31.255.80/28"]
+
+  availability_zones = []
+
+  name_prefix = "tfe-network-example-"
+  common_tags = {
+    project = "tfe-network-example"
+  }
+}
+```
