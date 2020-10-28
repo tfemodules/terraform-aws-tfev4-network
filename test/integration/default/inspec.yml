@@ -1,0 +1,17 @@
+---
+name: default
+title: Tests for the TFE network terraform module
+summary: Test suite for basic check of the network resources created in AWS.
+version: 0.1.0
+
+inputs:
+- name: vpc_id
+  type: String
+- name: private_subnet_ids
+  type: Array
+- name: public_subnet_ids
+  type: Array
+- name: rds_subnet_ids
+  type: Array
+- name: nat_gateway_public_ip
+  type: string
