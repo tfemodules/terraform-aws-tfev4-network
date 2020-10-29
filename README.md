@@ -11,8 +11,6 @@ The module will create
 * Two "private" subnets placed in the same availability zones as the "public" ones. The outgoing Internet traffic is routed via the NAT gateway. Incoming Internet traffic is not allowed.
 * (optional) Two "rds" subnets placed in the same availability zones as the "public" and "private" ones. These subnets do not have any routing to the Internet.
 
-Example of how to use the module can be found in the `example/` directory.
-
 ## Requirements
 
 The requirements to use the module are:
