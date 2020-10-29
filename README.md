@@ -70,3 +70,57 @@ module "tfe_network" {
   }
 }
 ```
+
+## Testing
+
+Tests for the module are set up using `kitchen` and `kitchen-terraform` to run `inspec` tests.
+
+Terraform variables which control the resources created during the test are set up in `test/fixtures/test.tfvars` file
+
+**Note:** The current tests are intended as a place holder for more in-depth checks. Only the bare minimum of the module functionality is tested, almost equivalent to simply running `terraform apply` and verifying that the run is successful.
+
+### Prerequisites
+
+To run the tests you will need the following
+
+* Have Ruby installed, version `~> 2.7.2`. It is recommended to use a ruby versions manager like `rbenv` and not your system ruby installation.
+* Have the Ruby Gems specified in the `Gemfile` file installed. It is recommended to use `bundler`.
+
+  ```bash
+  gem install bundler
+  bundle install
+  ```
+* Have Terraform installed, version `>= 0.13`
+
+### Running tests
+
+* Set up the credentials for the AWS provider as described [here](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication). For example
+
+  ```bash
+  export AWS_ACCESS_KEY_ID=<YOUR AWS ACCESS KEY ID>
+  export AWS_SECRET_ACCESS_KEY=<YOUR AWS SECRET KEY>
+  ```
+* Set up the AWS region to use.
+
+  ```bash
+  export AWS_REGION=<AWS REGION>
+  ```
+* (optional) Adjust Terraform input variables in `test/fixtures/test.tfvars`
+* Use `kitchen` to execute the tests
+  * Converge the testing environment.
+
+  ```bash
+  bundle exec kitchen converge
+  ```
+
+  * Execute the tests.
+
+  ```bash
+  bundle exec kitchen verify
+  ```
+
+  * Destroy the testing environment.
+
+  ```bash
+  bundle exec kitchen destroy
+  ```
