@@ -1,0 +1,22 @@
+driver:
+  name: terraform
+  root_module_directory: test/fixtures
+  verify_version: false # ignore kitchen-terraform supported terraform version check
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: terraform
+  systems:    
+    - name: aws
+      backend: aws
+
+platforms:
+  - name: aws-tfe-network
+    driver:
+      variable_files:
+        - test/fixtures/test.tfvars
+
+suites:
+  - name: default
