@@ -9,9 +9,15 @@ inputs:
   type: String
 - name: private_subnet_ids
   type: Array
+- name: private_subnet_cidr_to_id
+  type: Hash
 - name: public_subnet_ids
   type: Array
+- name: public_subnet_cidr_to_id
+  type: Hash
 - name: rds_subnet_ids
   type: Array
+- name: rds_subnet_cidr_to_id
+  type: Hash
 - name: nat_gateway_public_ip
   type: string
