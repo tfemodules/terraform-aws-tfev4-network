@@ -9,7 +9,7 @@ output "public_subnet_ids" {
 }
 
 output "public_subnet_cidr_to_id" {
-  value       = { for cidr, id in aws_subnet.public : cidr => id }
+  value       = { for cidr, subnet in aws_subnet.public : cidr => subnet.id }
   description = "A mapping of the public subnets CIDRs to their Ids."
 }
 
@@ -19,7 +19,7 @@ output "private_subnet_ids" {
 }
 
 output "private_subnet_cidr_to_id" {
-  value       = { for cidr, id in aws_subnet.private : cidr => id }
+  value       = { for cidr, subnet in aws_subnet.private : cidr => subnet.id }
   description = "A mapping of the private subnets CIDRs to their Ids."
 }
 
@@ -29,7 +29,7 @@ output "rds_subnet_ids" {
 }
 
 output "rds_subnet_cidr_to_id" {
-  value       = { for cidr, id in aws_subnet.rds : cidr => id }
+  value       = { for cidr, subnet in aws_subnet.rds : cidr => subnet.id }
   description = "A mapping of the RDS subnets CIDRs to their Ids."
 }
 
